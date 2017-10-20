@@ -24,9 +24,16 @@ void writeBox(int numSigns)              // Name of the action
 	//The top of the box
 	writeFullLine(numSigns);
 
+	//The height of the inside of the square
+	int insideHeight = (numSigns / 2) - 2;
+
+	//If numSigns is odd, ovveride insideHeight using the other formula
+	if (numSigns % 2 == 1)	insideHeight = (numSigns + 1) / 2 - 2;
+	
+
 	//The interior of the box
 	cout << endl;
-	for (int i = 0; i < (numSigns / 2) - 2; i++)
+	for (int i = 0; i < insideHeight; i++)
 	{
 		writeHollowLine(numSigns);
 	}
