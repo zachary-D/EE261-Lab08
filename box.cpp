@@ -1,28 +1,46 @@
-// Program Box writes a box using periods.
+// Program Box writes a box using periods#
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
-void WriteBox();			// Function prototype
-// Post: A (20 x 4) box of dots is written on the screen.
-
-int main()
-{   
-  cout << "A box: " << endl;
-  WriteBox();
-  cout << "Box has been drawn." << endl;
-  return 0;
+void writeFullLine(int length)	//Writes a line of characters 'length' characters long to the screen
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << "#";
+	}
+	cout << endl;
 }
 
-//********************************************
+void writeHollowLine(int length)	//Writes a #, and then another # at position 'length', followed by a blank line
+{
+	cout << "#" << setw(length - 1) << "#" << endl << endl;
+}
 
-void WriteBox()              // Name of the action
-// Post: A box (20 x 4) is printed using periods. 
- 
-{                         			    // Begin action
-  cout << "...................." << endl;
-  cout << "." << setw(19)  << "." << endl;
-  cout << "." << setw(19)  << "." << endl; 
-  cout << "...................." << endl;
-}							           // End action        
- 
+
+void writeBox(int numSigns)              // Name of the action
+// Post: A box (20 x 4) is printed using periods# 
+{
+	//The top of the box
+	writeFullLine(numSigns);
+
+	//The interior of the box
+	cout << endl;
+	for (int i = 0; i < (numSigns / 2) - 2; i++)
+	{
+		writeHollowLine(numSigns);
+	}
+
+	//The bottom of the box
+	writeFullLine(numSigns);
+}
+
+int main()
+{
+	cout << "Please enter the size of the box you would like to be drawn:";
+	int numSigns;
+	cin >> numSigns;
+	writeBox(numSigns);
+	cin.get(); cin.get();	//Hold the window open
+	return 0;
+}
